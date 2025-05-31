@@ -93,7 +93,7 @@ public class BinarySearch {
             System.out.println("Worst case: " + (end - start) / 1000 + " µs");
             out.println("Worst case: " + (end - start) / 1000 + " µs");
 
-            System.out.println("\nTiming results written to : " + outputFile);
+            System.out.println("\nTiming results written to: " + outputFile);
 
             out.close();
             scanner.close();
