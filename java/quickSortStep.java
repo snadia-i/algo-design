@@ -106,7 +106,6 @@ public class quickSortStep {
         quickSort(arr, startRow, endRow, startRow, endRow);
         long endTime = System.nanoTime();
         double durationMs = (endTime - startTime) / 1_000_000.0;
-        System.out.printf("Sorting runtime: %.3f ms%n", durationMs);
 
         String outputFileName = String.format("quick_sort_step_%d_%d.txt", startRow + 1, endRow + 1);
         try (java.io.BufferedWriter bw = new java.io.BufferedWriter(new java.io.FileWriter(outputFileName))) {
