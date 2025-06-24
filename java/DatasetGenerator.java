@@ -41,7 +41,7 @@ public class DatasetGenerator {
 
     // Generate a random lowercase word of length 5 to 10
     public static String getRandomWord(Random rand) {
-        int length = 5 + rand.nextInt(6); // 5 to 10 characters
+        int length = 4 + rand.nextInt(3); // 4,5 to 6 letters
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < length; i++) {
             char c = (char) ('a' + rand.nextInt(26));
