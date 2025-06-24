@@ -98,7 +98,6 @@ int main() {
     quickSort(dataList, startRow, endRow, startRow, endRow);
     auto endTime = std::chrono::high_resolution_clock::now();
     double durationMs = std::chrono::duration<double, std::milli>(endTime - startTime).count();
-    std::cout << "Sorting runtime: " << durationMs << " ms" << std::endl;
 
     std::string outputFileName = "quick_sort_step_" + std::to_string(startRow + 1) + "_" + std::to_string(endRow + 1) + ".txt";
     std::ofstream outfile(outputFileName);
