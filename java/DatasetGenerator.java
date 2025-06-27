@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Scanner;
 
-public class datasetGenerator {
+public class DatasetGenerator {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);

@@ -62,11 +62,12 @@ public class BinarySearchStep {
                 int mid = (low + high) / 2;
                 String step = mid + ": " + numbers.get(mid) + "/" + names.get(mid);
                 out.println(step);
-                System.out.println(step);
+                //System.out.println(step);
 
                 if (numbers.get(mid) == target) {
                     out.close();
-                    // System.out.println("Target found at index: " + mid + " (" + names.get(mid) + ")");
+                    out.println("Target found at index: " + mid + " (" + names.get(mid) + ")");
+                    System.out.println("Target found at index: " + mid + " (" + names.get(mid) + ")");
                     System.out.println("Binary search steps recorded in: " + outputFile);
                     return;
                 } else if (numbers.get(mid) < target) {

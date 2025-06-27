@@ -5,6 +5,7 @@
 #include <chrono>
 #include <string>
 #include <sys/stat.h>
+#include <iomanip>
 
 using namespace std;
 using namespace chrono;
@@ -80,13 +81,15 @@ int main() {
         return 1;
     }
 
+    out << fixed << setprecision(3); // Set precision for output
+
     // Measure and record the time taken for the best case
     auto start = high_resolution_clock::now();
     for (int i = 0; i < n; ++i) { // Repeat to get a measurable time
         binarySearch(numbers, best);
     }
     auto end = high_resolution_clock::now();
-    out << "Best case: " << duration_cast<microseconds>(end - start).count() << " µs\n";
+    out << "Best case: " << duration<double, milli>(end - start).count() << " ms\n";
 
     // Measure and record the time taken for the average case
     start = high_resolution_clock::now();
@@ -94,7 +97,7 @@ int main() {
         binarySearch(numbers, average);
     }
     end = high_resolution_clock::now();
-    out << "Average case: " << duration_cast<microseconds>(end - start).count() << " µs\n";
+    out << "Average case: " << duration<double, milli>(end - start).count() << " ms\n";
 
     // Measure and record the time taken for the worst case
     start = high_resolution_clock::now();
@@ -102,9 +105,9 @@ int main() {
         binarySearch(numbers, worst);
     }
     end = high_resolution_clock::now();
-    out << "Worst case: " << duration_cast<microseconds>(end - start).count() << " µs\n";
+    out << "Worst case: " << duration<double, milli>(end - start).count() << " ms\n";
 
-    cout << "\nBinary search timings saved to: " << outputFile << "\n";
+    cout << "Binary search timings saved to: " << outputFile << "\n";
     out.close();
 
     return 0;

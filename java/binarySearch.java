@@ -77,8 +77,9 @@ public class BinarySearch {
                 binarySearch(numbers, best);
             }
             long end = System.nanoTime();
-            //System.out.println("Best case: " + (end - start) / 1000 + " µs");
-            out.println("Best case: " + (end - start) / 1000 + " µs");
+            double bestTime = (end - start) / 1000000.0; // Convert to milliseconds
+            //System.out.println("Best case: " + (end - start) / 1000000.0 + " ms");
+            out.println("Best case: " + String.format("%.3f", bestTime)+ " ms");
 
             // Average case
             start = System.nanoTime();
@@ -86,8 +87,9 @@ public class BinarySearch {
                 binarySearch(numbers, average);
             }
             end = System.nanoTime();
-            //System.out.println("Average case: " + (end - start) / 1000 + " µs");
-            out.println("Average case: " + (end - start) / 1000 + " µs");
+            double averageTime = (end - start) / 1000000.0; // Convert to milliseconds
+            //System.out.println("Average case: " + (end - start) / 1000000.0 + " ms");
+            out.println("Average case: " + String.format("%.3f", averageTime) + " ms");
 
             // Worst case
             start = System.nanoTime();
@@ -95,10 +97,11 @@ public class BinarySearch {
                 binarySearch(numbers, worst);
             }
             end = System.nanoTime();
-            //System.out.println("Worst case: " + (end - start) / 1000 + " µs");
-            out.println("Worst case: " + (end - start) / 1000 + " µs");
+            double worstTime = (end - start) / 1000000.0; // Convert to milliseconds
+            //System.out.println("Worst case: " + (end - start) / 1000000.0 + " ms");
+            out.println("Worst case: " + String.format("%.3f", worstTime) + " ms");
 
-            System.out.println("\nTiming results written to: " + outputFile);
+            System.out.println("Timing results written to: " + outputFile);
 
             out.close();
             scanner.close();

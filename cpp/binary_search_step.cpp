@@ -102,11 +102,11 @@ int main() {
             string step = to_string(mid) + ": " + to_string(numbers[mid]) + "/" + names[mid];
             
             out << step << endl;    // Write step to output file
-            cout << step << endl;   // Print step to console
+            // cout << step << endl;   // Print step to console
             
             if (numbers[mid] == target) {
                 out.close();
-                // cout << "Target found at index: " << mid << " (" << names[mid] << ")" << endl;
+                cout << "Target found at index: " << mid << " (" << names[mid] << ")" << endl;
                 cout << "Binary search steps recorded in: " << outputFile << endl;
                 return 0;
             } else if (numbers[mid] < target) {
