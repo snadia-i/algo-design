@@ -5,11 +5,11 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Scanner;
 
-public class DatasetGenerator {
+public class datasetGenerator {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter dataset size: ");
+        System.out.print("Enter dataset size: "); // get size of dataset
         int size = scanner.nextInt();
         scanner.close();
 
@@ -23,7 +23,7 @@ public class DatasetGenerator {
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
             while (generatedIntegers.size() < size) {
-                // Generate a unique positive integer > 0 and up to 1.2 billion (just incase)
+                // generate a unique positive integer > 0 and up to 1.2 billion (just incase)
                 int number = 1 + rand.nextInt(1_200_000_000);
 
                 if (generatedIntegers.add(number)) {
@@ -39,7 +39,7 @@ public class DatasetGenerator {
         }
     }
 
-    // Generate a random lowercase word of length 4 to 6
+    // generate a random lowercase word of length 4 to 6
     public static String getRandomWord(Random rand) {
         int length = 4 + rand.nextInt(3); // 4,5 to 6 letters
         StringBuilder sb = new StringBuilder();
