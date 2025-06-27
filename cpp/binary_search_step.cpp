@@ -86,8 +86,7 @@ int main() {
         }
         
         // Create output directory if it doesn't exist
-        mkdir("outputs", 0777);
-        string outputFile = "outputs/binary_search_step_" + to_string(target) + ".txt";
+        string outputFile = "binary_search_step_" + to_string(target) + ".txt";
         ofstream out(outputFile);
         
         if (!out.is_open()) {

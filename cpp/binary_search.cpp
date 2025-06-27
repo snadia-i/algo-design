@@ -73,8 +73,7 @@ int main() {
     int worst = 2000000000;         // Element not in the list (worst case)
 
     // Create output directory if it doesn't exist
-    mkdir("outputs", 0777);
-    string outputFile = "outputs/binary_search_" + to_string(n) + ".txt";
+    string outputFile = "binary_search_" + to_string(n) + ".txt";
     ofstream out(outputFile);
     if (!out.is_open()) {
         cerr << "Failed to create output file.\n";
@@ -83,19 +82,25 @@ int main() {
 
     // Measure and record the time taken for the best case
     auto start = high_resolution_clock::now();
-    binarySearch(numbers, best);
+    for (int i = 0; i < n; ++i) { // Repeat to get a measurable time
+        binarySearch(numbers, best);
+    }
     auto end = high_resolution_clock::now();
     out << "Best case: " << duration_cast<microseconds>(end - start).count() << " µs\n";
 
     // Measure and record the time taken for the average case
     start = high_resolution_clock::now();
-    binarySearch(numbers, average);
+    for (int i = 0; i < n; ++i) { // Repeat to get a measurable time
+        binarySearch(numbers, average);
+    }
     end = high_resolution_clock::now();
     out << "Average case: " << duration_cast<microseconds>(end - start).count() << " µs\n";
 
     // Measure and record the time taken for the worst case
     start = high_resolution_clock::now();
-    binarySearch(numbers, worst);
+    for (int i = 0; i < n; ++i) { // Repeat to get a measurable time
+        binarySearch(numbers, worst);
+    }
     end = high_resolution_clock::now();
     out << "Worst case: " << duration_cast<microseconds>(end - start).count() << " µs\n";
 

@@ -46,19 +46,15 @@ public class BinarySearchStep {
             }
 
             // Check if the list is sorted
-            for (int i = 1; i < numbers.size(); i++) {
-                if (numbers.get(i) < numbers.get(i - 1)) {
-                    System.out.println("The numbers in the file are not sorted. Please provide a sorted file.");
-                    return;
-                }
-            }
+            // for (int i = 1; i < numbers.size(); i++) {
+            //     if (numbers.get(i) < numbers.get(i - 1)) {
+            //         System.out.println("The numbers in the file are not sorted. Please provide a sorted file.");
+            //         return;
+            //     }
+            // }
 
             // Prepare output file to record each step of the binary search
-            File outputsFolder = new File("outputs");
-            if (!outputsFolder.exists()) {
-                outputsFolder.mkdir();
-            }
-            String outputFile = "outputs/binary_search_step_" + target + ".txt";
+            String outputFile = "binary_search_step_" + target + ".txt";
             PrintWriter out = new PrintWriter(outputFile);
 
             int low = 0, high = numbers.size() - 1;
@@ -70,7 +66,7 @@ public class BinarySearchStep {
 
                 if (numbers.get(mid) == target) {
                     out.close();
-                    System.out.println("Target found at index: " + mid + " (" + names.get(mid) + ")");
+                    // System.out.println("Target found at index: " + mid + " (" + names.get(mid) + ")");
                     System.out.println("Binary search steps recorded in: " + outputFile);
                     return;
                 } else if (numbers.get(mid) < target) {

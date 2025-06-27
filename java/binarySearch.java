@@ -56,8 +56,8 @@ public class BinarySearch {
                 return;
             }
 
-            System.out.println("\n====== Binary Search Timing Results ======\n");
-            System.out.println("Dataset: " + filename);
+            //System.out.println("\n====== Binary Search Timing Results ======\n");
+            //System.out.println("Dataset: " + filename);
 
             int n = numbers.size();
 
@@ -65,32 +65,37 @@ public class BinarySearch {
             int average = numbers.get(n / 3);
             int worst = 2000000000;
 
-            File outputsFolder = new File("outputs");
-            if (!outputsFolder.exists()) {
-                outputsFolder.mkdir();
-            }
-            String outputFile = "outputs/binary_search_" + n + ".txt";
+            String outputFile = "binary_search_" + n + ".txt";
             PrintWriter out = new PrintWriter(outputFile);
+
+            // out.println("\n====== Binary Search Timing Results ======\n");
+            // out.println("Dataset: " + filename);
 
             // Best case
             long start = System.nanoTime();
-            binarySearch(numbers, best);
+            for (int i = 0; i < n; i++) {
+                binarySearch(numbers, best);
+            }
             long end = System.nanoTime();
-            System.out.println("Best case: " + (end - start) / 1000 + " µs");
+            //System.out.println("Best case: " + (end - start) / 1000 + " µs");
             out.println("Best case: " + (end - start) / 1000 + " µs");
 
             // Average case
             start = System.nanoTime();
-            binarySearch(numbers, average);
+            for (int i = 0; i < n; i++) {
+                binarySearch(numbers, average);
+            }
             end = System.nanoTime();
-            System.out.println("Average case: " + (end - start) / 1000 + " µs");
+            //System.out.println("Average case: " + (end - start) / 1000 + " µs");
             out.println("Average case: " + (end - start) / 1000 + " µs");
 
             // Worst case
             start = System.nanoTime();
-            binarySearch(numbers, worst);
+            for (int i = 0; i < n; i++) {
+                binarySearch(numbers, worst);
+            }
             end = System.nanoTime();
-            System.out.println("Worst case: " + (end - start) / 1000 + " µs");
+            //System.out.println("Worst case: " + (end - start) / 1000 + " µs");
             out.println("Worst case: " + (end - start) / 1000 + " µs");
 
             System.out.println("\nTiming results written to: " + outputFile);
