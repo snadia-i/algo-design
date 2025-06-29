@@ -29,7 +29,9 @@ public class BinarySearch {
         try {
             Scanner scanner = new Scanner(System.in);
             System.out.print("Enter the CSV file name: ");
+            // Read the filename from user input
             String filename = scanner.nextLine();
+            
             if (filename.isEmpty()) {
                 System.out.println("No file name provided. Exiting.");
                 scanner.close();
@@ -61,9 +63,9 @@ public class BinarySearch {
 
             int n = numbers.size();
 
-            int best = numbers.get(n / 2);
-            int average = numbers.get(n / 3);
-            int worst = 2000000000;
+            int best = numbers.get((n - 1) / 2);
+            int average = numbers.get((n - 1) / 3);
+            int worst = Integer.MAX_VALUE;
 
             String outputFile = "binary_search_" + n + ".txt";
             PrintWriter out = new PrintWriter(outputFile);

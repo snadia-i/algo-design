@@ -10,8 +10,7 @@
 using namespace std;
 using namespace chrono;
 
-// Performs binary search on a sorted vector of integers.
-// Returns the index of 'target' if found, otherwise returns -1.
+// Function to perform binary search on a sorted vector
 int binarySearch(const vector<int>& data, int target) {
     int low = 0, high = data.size() - 1;
     while (low <= high) {
@@ -23,7 +22,7 @@ int binarySearch(const vector<int>& data, int target) {
     return -1;
 }
 
-// Checks if the input vector is sorted in non-decreasing order.
+// Function to check if the vector is sorted
 bool isSorted(const vector<int>& data) {
     for (size_t i = 1; i < data.size(); ++i) {
         if (data[i] < data[i - 1]) return false;
@@ -34,16 +33,17 @@ bool isSorted(const vector<int>& data) {
 int main() {
     string filename;
     cout << "Enter the CSV file name: ";
-    getline(cin, filename); // Get the filename from user input
+    // Read the filename from user input
+    getline(cin, filename);
 
-    ifstream file(filename);
-    if (!file.is_open()) {
-        cerr << "Error opening file: " << filename << "\n";
-        return 1;
+    if (filename.empty()) {
+        cout << "No file name provided. Exiting.\n";
+        return 0;
     }
 
     vector<int> numbers;
     string line;
+    ifstream file(filename);
     // Read numbers from the CSV file, assuming one number per line or comma-separated
     while (getline(file, line)) {
         stringstream ss(line);
@@ -63,23 +63,19 @@ int main() {
 
     // Ensure the numbers are sorted before performing binary search
     if (!isSorted(numbers)) {
-        cout << "The file is not sorted. Binary search cannot proceed.\n";
+        cout << "The file is not sorted. Binary search cannot be performed. Exiting.";
         return 1;
     }
 
     int n = numbers.size();
     // Select test cases for best, average, and worst case scenarios
-    int best = numbers[n / 2];      // Middle element (best case)
-    int average = numbers[n / 3];   // Some element (average case)
-    int worst = 2000000000;         // Element not in the list (worst case)
+    int best = numbers[(n - 1) / 2];      // Middle element (best case)
+    int average = numbers[(n - 1) / 3];   // Some element (average case)
+    int worst = INT_MAX;         // Element not in the list (worst case)
 
     // Create output directory if it doesn't exist
     string outputFile = "binary_search_" + to_string(n) + ".txt";
     ofstream out(outputFile);
-    if (!out.is_open()) {
-        cerr << "Failed to create output file.\n";
-        return 1;
-    }
 
     out << fixed << setprecision(3); // Set precision for output
 
