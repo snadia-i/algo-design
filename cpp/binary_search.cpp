@@ -48,14 +48,16 @@ int main() {
     while (getline(file, line)) {
         stringstream ss(line);
         string value;
+        // Split the line by commas and convert to integers, ignoring any non-integer values
         if (getline(ss, value, ',')) {
             try {
-                numbers.push_back(stoi(value)); // Convert string to integer and add to vector
-            } catch (...) {} // Ignore conversion errors
+                numbers.push_back(stoi(value));
+            } catch (...) {}
         }
     }
     file.close();
 
+    // Check if the numbers vector is empty
     if (numbers.empty()) {
         cout << "No numbers found in the file. Exiting.\n";
         return 0;
@@ -67,8 +69,8 @@ int main() {
         return 1;
     }
 
+    // Calculate the best, average, and worst cases
     int n = numbers.size();
-    // Select test cases for best, average, and worst case scenarios
     int best = numbers[(n - 1) / 2];      // Middle element (best case)
     int average = numbers[(n - 1) / 3];   // Some element (average case)
     int worst = INT_MAX;         // Element not in the list (worst case)
@@ -77,11 +79,12 @@ int main() {
     string outputFile = "binary_search_" + to_string(n) + ".txt";
     ofstream out(outputFile);
 
-    out << fixed << setprecision(3); // Set precision for output
+    // set the output precision for floating-point numbers
+    out << fixed << setprecision(3);
 
     // Measure and record the time taken for the best case
     auto start = high_resolution_clock::now();
-    for (int i = 0; i < n; ++i) { // Repeat to get a measurable time
+    for (int i = 0; i < n; ++i) { // Perform n searches to get a measurable time
         binarySearch(numbers, best);
     }
     auto end = high_resolution_clock::now();
@@ -89,7 +92,7 @@ int main() {
 
     // Measure and record the time taken for the average case
     start = high_resolution_clock::now();
-    for (int i = 0; i < n; ++i) { // Repeat to get a measurable time
+    for (int i = 0; i < n; ++i) { // Perform n searches to get a measurable time
         binarySearch(numbers, average);
     }
     end = high_resolution_clock::now();
@@ -97,12 +100,13 @@ int main() {
 
     // Measure and record the time taken for the worst case
     start = high_resolution_clock::now();
-    for (int i = 0; i < n; ++i) { // Repeat to get a measurable time
+    for (int i = 0; i < n; ++i) { // Perform n searches to get a measurable time
         binarySearch(numbers, worst);
     }
     end = high_resolution_clock::now();
     out << "Worst case: " << duration<double, milli>(end - start).count() << " ms\n";
 
+    // Output the results
     cout << "Binary search timings saved to: " << outputFile << "\n";
     out.close();
 

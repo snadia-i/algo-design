@@ -8,31 +8,35 @@
 
 using namespace std;
 
+
 int main() {
     try {
         string filename;
         int target;
         
+        // Prompt user for the CSV file name
         cout << "Enter the CSV file name: ";
-        getline(cin, filename); // Get the filename from user input
+        getline(cin, filename);
         
+        // Check if the filename is empty
         if (filename.empty()) {
             cout << "No file name provided. Exiting." << endl;
             return 0;
         }
         
+        // Prompt user for the target value
         cout << "Enter the target value to search for: ";
         string targetInput;
-        getline(cin, targetInput); // Get the target value as a string
+        getline(cin, targetInput);
         
         try {
-            target = stoi(targetInput); // Convert target input to integer
+            target = stoi(targetInput);
             if (target < 0) {
                 cout << "Invalid target value. Exiting." << endl;
                 return 0;
             }
         } catch (const invalid_argument& e) {
-            cout << "Invalid input for target value. Please enter a valid integer." << endl;
+            cout << "Invalid input for target value. Please enter a valid integer." << endl; 
             return 0;
         } catch (const out_of_range& e) {
             cout << "Target value out of range. Please enter a valid integer." << endl;
@@ -42,9 +46,10 @@ int main() {
         vector<int> numbers;
         vector<string> names;
         
+        // Open the CSV file
         ifstream file(filename);
         if (!file.is_open()) {
-            cout << "File not found: " << filename << endl;
+            cout << "File not found: " << filename << endl; 
             return 0;
         }
         
@@ -61,9 +66,10 @@ int main() {
                 name.erase(0, name.find_first_not_of(" \t"));
                 name.erase(name.find_last_not_of(" \t") + 1);
                 
+                // Convert number string to integer and store it with the name
                 try {
-                    numbers.push_back(stoi(numberStr)); // Convert and store number
-                    names.push_back(name);              // Store name
+                    numbers.push_back(stoi(numberStr)); 
+                    names.push_back(name);
                 } catch (const invalid_argument& e) {
                     cout << "Error parsing number in CSV: " << numberStr << endl;
                     return 0;
@@ -72,6 +78,7 @@ int main() {
         }
         file.close();
         
+        // Check if the numbers vector is empty
         if (numbers.empty()) {
             cout << "No data found in the file." << endl;
             return 0;
@@ -101,9 +108,10 @@ int main() {
             int mid = (low + high) / 2;
             string step = to_string(mid) + ": " + to_string(numbers[mid]) + "/" + names[mid];
             
-            out << step << endl;    // Write step to output file
-            // cout << step << endl;   // Print step to console
+            // Output the current step
+            out << step << endl;
             
+            // Target found
             if (numbers[mid] == target) {
                 out.close();
                 cout << "Target found at index: " << mid << " (" << names[mid] << ")" << endl;
@@ -120,11 +128,11 @@ int main() {
         out << "-1" << endl;
         out.close();
         cout << "Target not found. Binary search steps recorded in: " << outputFile << endl;
-        
+    
+
     } catch (const exception& e) {
         cout << "An error occurred: " << e.what() << endl;
         return 1;
     }
-    
     return 0;
 }

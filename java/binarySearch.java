@@ -24,7 +24,7 @@ public class BinarySearch {
         }
         return true;
     }
-
+    
     public static void main(String[] args) throws Exception {
         try {
             Scanner scanner = new Scanner(System.in);
@@ -32,6 +32,7 @@ public class BinarySearch {
             // Read the filename from user input
             String filename = scanner.nextLine();
             
+            // Check if the filename is empty
             if (filename.isEmpty()) {
                 System.out.println("No file name provided. Exiting.");
                 scanner.close();
@@ -41,68 +42,65 @@ public class BinarySearch {
             List<String> lines = Files.readAllLines(Paths.get(filename));
             List<Integer> numbers = new ArrayList<>();
 
+            // Parse each line, split by commas, and convert to integers
             for (String line : lines) {
                 String[] parts = line.split(",");
                 numbers.add(Integer.parseInt(parts[0].trim()));
             }
 
+            // Check if the numbers list is empty
             if (numbers.isEmpty()) {
                 System.out.println("No numbers found in the file. Exiting.");
                 scanner.close();
                 return;
             }
 
+            // Check if the dataset is sorted
             if (!isSorted(numbers)) {
                 System.out.println("Dataset is not sorted. Binary search cannot be performed. Exiting.");
                 scanner.close();
                 return;
             }
 
-            //System.out.println("\n====== Binary Search Timing Results ======\n");
-            //System.out.println("Dataset: " + filename);
-
+            // Calculate the best, average, and worst cases
             int n = numbers.size();
+            int best = numbers.get((n - 1) / 2); // Middle element for best case
+            int average = numbers.get((n - 1) / 3); // Element at one-third for average case
+            int worst = Integer.MAX_VALUE; // Element not in the list for worst case
 
-            int best = numbers.get((n - 1) / 2);
-            int average = numbers.get((n - 1) / 3);
-            int worst = Integer.MAX_VALUE;
-
+            // Create an output file
             String outputFile = "binary_search_" + n + ".txt";
             PrintWriter out = new PrintWriter(outputFile);
-
-            // out.println("\n====== Binary Search Timing Results ======\n");
-            // out.println("Dataset: " + filename);
 
             // Best case
             long start = System.nanoTime();
             for (int i = 0; i < n; i++) {
-                binarySearch(numbers, best);
+                binarySearch(numbers, best); // Perform n searches to get a measurable time
             }
             long end = System.nanoTime();
             double bestTime = (end - start) / 1000000.0; // Convert to milliseconds
-            //System.out.println("Best case: " + (end - start) / 1000000.0 + " ms");
             out.println("Best case: " + String.format("%.3f", bestTime)+ " ms");
 
             // Average case
             start = System.nanoTime();
             for (int i = 0; i < n; i++) {
-                binarySearch(numbers, average);
+                binarySearch(numbers, average); // Perform n searches to get a measurable time
             }
             end = System.nanoTime();
             double averageTime = (end - start) / 1000000.0; // Convert to milliseconds
-            //System.out.println("Average case: " + (end - start) / 1000000.0 + " ms");
             out.println("Average case: " + String.format("%.3f", averageTime) + " ms");
 
             // Worst case
             start = System.nanoTime();
             for (int i = 0; i < n; i++) {
-                binarySearch(numbers, worst);
+                binarySearch(numbers, worst); // Perform n searches to get a measurable time
             }
             end = System.nanoTime();
             double worstTime = (end - start) / 1000000.0; // Convert to milliseconds
             //System.out.println("Worst case: " + (end - start) / 1000000.0 + " ms");
             out.println("Worst case: " + String.format("%.3f", worstTime) + " ms");
 
+            // Output the results to console
             System.out.println("Timing results written to: " + outputFile);
 
             out.close();
